@@ -16,13 +16,30 @@ class MoveForwardTest {
         val roverThatMoved = rover.execute(MoveForward())
         Assertions.assertThat(roverThatMoved).isEqualTo(Rover(Direction.SOUTH, Position(1, 8)))
     }
+
+    @Test
+    fun `moves the rover forward when facing east`() {
+        val rover = Rover(Direction.EAST, Position(1, 7))
+        val roverThatMoved = rover.execute(MoveForward())
+        Assertions.assertThat(roverThatMoved).isEqualTo(Rover(Direction.EAST, Position(2, 7)))
+    }
+
+    @Test
+    fun `moves the rover forward when facing west`() {
+        val rover = Rover(Direction.WEST, Position(1, 7))
+        val roverThatMoved = rover.execute(MoveForward())
+        Assertions.assertThat(roverThatMoved).isEqualTo(Rover(Direction.WEST, Position(0, 7)))
+    }
 }
 
 class MoveForward {
     fun compute(position: Position, direction: Direction): Position {
-
-        if (direction == Direction.SOUTH) return position.moveSouth()
-        return position.moveNorth()
+        return when (direction) {
+            Direction.NORTH -> position.moveNorth()
+            Direction.SOUTH -> position.moveSouth()
+            Direction.EAST -> position.moveEast()
+            Direction.WEST -> position.moveWest()
+        }
     }
 }
 
@@ -33,6 +50,14 @@ data class Position(val x: Int, val y: Int) {
 
     fun moveNorth(): Position {
         return Position(x, y - 1)
+    }
+
+    fun moveEast(): Position {
+        return Position(x + 1, y)
+    }
+
+    fun moveWest(): Position {
+        return Position(x - 1, y)
     }
 }
 
