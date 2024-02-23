@@ -6,7 +6,7 @@ class MoveForwardTest {
     @Test
     fun `moves the rover forward when facing north`() {
         val rover = Rover(Direction.NORTH, Position(1, 7))
-        val roverThatMoved = MoveForward().execute(rover)
+        val roverThatMoved = rover.execute(MoveForward())
         Assertions.assertThat(roverThatMoved).isEqualTo(Rover(Direction.NORTH, Position(1, 6)))
     }
 }
@@ -22,4 +22,8 @@ enum class Direction {
     NORTH, SOUTH, EAST, WEST
 }
 
-data class Rover(val direction: Direction, val position: Position)
+data class Rover(val direction: Direction, val position: Position) {
+    fun execute(moveForward: MoveForward): Rover {
+        return moveForward.execute(this)
+    }
+}
