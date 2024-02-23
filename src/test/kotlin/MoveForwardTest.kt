@@ -12,9 +12,7 @@ class MoveForwardTest {
 }
 
 class MoveForward {
-    fun execute(rover: Rover): Rover {
-        return Rover(rover.direction, Position(rover.position.x, rover.position.y - 1))
-    }
+    fun compute(position: Position) = Position(position.x, position.y - 1)
 }
 
 data class Position(val x: Int, val y: Int)
@@ -24,6 +22,7 @@ enum class Direction {
 
 data class Rover(val direction: Direction, val position: Position) {
     fun execute(moveForward: MoveForward): Rover {
-        return moveForward.execute(this)
+        return Rover(this.direction, moveForward.compute(position))
     }
+
 }
