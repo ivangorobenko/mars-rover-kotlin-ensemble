@@ -13,7 +13,7 @@ class MoveForwardTest {
         expectedPosition: Position
     ) {
         val rover = Rover(direction, position)
-        val roverThatMoved = rover.execute(MoveForward())
+        val roverThatMoved = rover.moveForward()
         Assertions.assertThat(roverThatMoved).isEqualTo(Rover(direction, expectedPosition))
     }
 
