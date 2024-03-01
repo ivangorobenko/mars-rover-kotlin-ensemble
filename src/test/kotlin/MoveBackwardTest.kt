@@ -23,6 +23,9 @@ class MoveBackwardTest {
         fun moveBackwardParameters(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(Direction.NORTH, Position(1, 7), Position(1, 8)),
+                Arguments.of(Direction.SOUTH, Position(1, 7), Position(1, 6)),
+                Arguments.of(Direction.EAST, Position(1, 7), Position(0, 7)),
+                Arguments.of(Direction.WEST, Position(1, 7), Position(2, 7))
             )
         }
     }
