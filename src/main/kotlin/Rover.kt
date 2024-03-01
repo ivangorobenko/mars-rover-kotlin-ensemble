@@ -7,4 +7,8 @@ data class Rover(val direction: Direction, val position: Position) {
         )
     }
 
+    fun moveBackward(): Rover {
+        TODO("Not yet implemented")
+    }
+
 }

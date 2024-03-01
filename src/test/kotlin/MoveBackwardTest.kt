@@ -5,27 +5,24 @@ import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
 
-class MoveForwardTest {
+class MoveBackwardTest {
     @ParameterizedTest
-    @MethodSource("moveForwardParameters")
-    fun `moves the rover forward for all directions`(
+    @MethodSource("moveBackwardParameters")
+    fun `moves the rover backward for all directions`(
         direction: Direction,
         position: Position,
         expectedPosition: Position
     ) {
         val rover = Rover(direction, position)
-        val roverThatMoved = rover.moveForward()
+        val roverThatMoved = rover.moveBackward()
         Assertions.assertThat(roverThatMoved).isEqualTo(Rover(direction, expectedPosition))
     }
 
     companion object {
         @JvmStatic
-        fun moveForwardParameters(): Stream<Arguments> {
+        fun moveBackwardParameters(): Stream<Arguments> {
             return Stream.of(
-                Arguments.of(Direction.NORTH, Position(1, 7), Position(1, 6)),
-                Arguments.of(Direction.SOUTH, Position(1, 7), Position(1, 8)),
-                Arguments.of(Direction.EAST, Position(1, 7), Position(2, 7)),
-                Arguments.of(Direction.WEST, Position(1, 7), Position(0, 7))
+                Arguments.of(Direction.NORTH, Position(1, 7), Position(1, 8)),
             )
         }
     }
