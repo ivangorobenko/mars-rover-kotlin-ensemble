@@ -1,17 +1,12 @@
 data class Position(val x: Int, val y: Int) {
-    fun moveSouth(): Position {
-        return Position(x, y + 1)
+
+    fun nextPositionIn(direction: Direction): Position {
+        return when (direction) {
+            Direction.NORTH -> Position(x, y - 1)
+            Direction.SOUTH -> Position(x, y + 1)
+            Direction.EAST -> Position(x + 1, y)
+            Direction.WEST -> Position(x - 1, y)
+        }
     }
 
-    fun moveNorth(): Position {
-        return Position(x, y - 1)
-    }
-
-    fun moveEast(): Position {
-        return Position(x + 1, y)
-    }
-
-    fun moveWest(): Position {
-        return Position(x - 1, y)
-    }
 }
